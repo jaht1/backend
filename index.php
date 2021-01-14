@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Jennas & Sophias PHP projekt 1</title>
+    <title>Backend</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -22,10 +22,10 @@
         </nav>
 
         <!-- Artiklar placerar sig snyggt efter varann -->
-        <article>
-            <h1>Uppg 1</h1>
-        </article>
+        
 
+        <article>   
+        <h1>Uppg 1</h1>
         <?php
         // Uppg 1 - Superglobals KLART
         //phpinfo(); // Sök här efter uppg 1 info
@@ -41,11 +41,16 @@
         print("<p> Version av Apache: " . $version . "</p>");
         print("<p> PHP versionen: " . phpversion() . "</p>");
         ?>
+        </article>
 
         <article>
             <h1>Uppg 2</h1>
-            <p>Thesourmango kodar vidare</p>
-            <p>och kommer strax att glömma pull inna push!</p>
+        <?php
+        print("<p>Idag är det den " . date("d/m/Y") . "</p>");
+        print("<p>Klockan är " . date("H:i:s") . "</p>");
+        
+        
+        ?>
         </article>
     </div>
 </body>
