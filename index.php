@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dennis JS Demo</title>
+    <title>Jennas & Sophias PHP projekt 1</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -24,17 +24,22 @@
         <!-- Artiklar placerar sig snyggt efter varann -->
         <article>
             <h1>Uppg 1</h1>
-            <p>Jag ändrar samma paragraf som thesourmango</p>
         </article>
 
         <?php
-        print(3+6);
-        // Uppg 1 - Superglobals
-        // phpinfo(); // Sök här efter uppg 1 info
-        print($_SERVER['REMOTE_USER']);
+        // Uppg 1 - Superglobals KLART
+        //phpinfo(); // Sök här efter uppg 1 info
+        
+        print("<p>användarnamnet: " . $_SERVER['REMOTE_USER'] . "</p>");
         $serverPort = $_SERVER['SERVER_PORT'];
         // Konkatenering med punkt, märk att PHP kod producerar HTML resurser
         print("<p>Servern snurrar på port :" . $serverPort . "</p>" );
+        print("<p>Serverns ip-adress: " . $_SERVER['REMOTE_ADDR'] . "</p>");
+        print("<p>Din ip-adress: " . $_SERVER['REMOTE_ADDR'] . "</p>");
+
+        $version = apache_get_version();
+        print("<p> Version av Apache: " . $version . "</p>");
+        print("<p> PHP versionen: " . phpversion() . "</p>");
         ?>
 
         <article>
