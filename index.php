@@ -48,6 +48,7 @@
         <?php
         print("<p>Idag är det den " . date("d/m/Y") . "</p>");
         print("<p>Klockan är " . date("H:i:s") . "</p>");
+        print("<p>Veckodagen är "  . date("l") . "</p>"); 
         
         
         ?>
