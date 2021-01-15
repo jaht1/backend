@@ -48,9 +48,13 @@
         <?php
         print("<p>Idag är det den " . date("d/m/Y") . "</p>");
         print("<p>Klockan är " . date("H:i:s") . "</p>");
-        print("<p>Veckodagen är "  . date("l") . "</p>"); 
+        /* Array för veckodagen på svenska
+        $veckodag = array("Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"); 
         
-        
+        // Array för månaden på svenska
+        $manad = array("Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December");
+
+        */
         ?>
         </article>
     </div>
