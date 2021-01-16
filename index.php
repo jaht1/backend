@@ -49,16 +49,34 @@
         <?php
         print("<p>Idag är det den " . date("d/m/Y") . "</p>");
         print("<p>Klockan är " . date("H:i:s") . "</p>");
-        $veckonummer = date('W');
-        print("<p>Veckonumret är: " . $veckonummer . "</p>");
+
         // Array för veckodagen på svenska
         $veckodag = array("Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"); 
+        $dagnummer = date('w');
+        print("</p>Idag är det " . $veckodag[$dagnummer] . "</p>");
+        
+        //veckonumret
+        $veckonummer = date('W');
+        print("<p>Veckonumret är: " . $veckonummer . "</p>");
 
-        print("<p>Veckodagen är "  . date("l") . "</p>"); 
         // Array för månaden på svenska
-        $manad = array("Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December");
+        $manad = array(" ", "Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December");
+        $monthnum = date("n");
+
+        print("<p>Det är nu " . $manad[$monthnum] . "</p>");
+
 
         
+        //date_default_timezone_set('Europe/Helsinki');
+        //$day_number = date('w', $date);
+        //echo $day_number ; 
+        
+
+
+        /*setlocale(LC_TIME, "sv");
+        echo utf8_encode(strftime('%A'));*/
+
+
         ?>
         </article>
     </div>
