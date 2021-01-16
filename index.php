@@ -33,8 +33,9 @@
         print("<p>användarnamnet: " . $_SERVER['REMOTE_USER'] . "</p>");
         $serverPort = $_SERVER['SERVER_PORT'];
         // Konkatenering med punkt, märk att PHP kod producerar HTML resurser
+        print("<p>Host namn: " . gethostname() . "</p>");
         print("<p>Servern snurrar på port :" . $serverPort . "</p>" );
-        print("<p>Serverns ip-adress: " . $_SERVER['REMOTE_ADDR'] . "</p>");
+        print("<p>Serverns ip-adress: " . $_SERVER['SERVER_ADDR'] . "</p>");
         print("<p>Din ip-adress: " . $_SERVER['REMOTE_ADDR'] . "</p>");
 
         $version = apache_get_version();
@@ -48,13 +49,16 @@
         <?php
         print("<p>Idag är det den " . date("d/m/Y") . "</p>");
         print("<p>Klockan är " . date("H:i:s") . "</p>");
-        /* Array för veckodagen på svenska
+        $veckonummer = date('W');
+        print("<p>Veckonumret är: " . $veckonummer . "</p>");
+        // Array för veckodagen på svenska
         $veckodag = array("Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"); 
-        
+
+        print("<p>Veckodagen är "  . date("l") . "</p>"); 
         // Array för månaden på svenska
         $manad = array("Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December");
 
-        */
+        
         ?>
         </article>
     </div>
