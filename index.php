@@ -88,7 +88,10 @@ print("<p>Vilket betyder att det är nu " . $manad[$monthnum] . "</p>");
         //Läxan är att göra uppgifterna 1-3
         $dag = $_GET["dag"];
 print("<p>Du vill veta hur länge det är till " . $_GET["dag"] . "." . $_GET["manad"] . ".</p>");
+print("<p>Testar om dehär syns på sidan</p>");
 ?>
+
+
         </article>
 
     </div>
