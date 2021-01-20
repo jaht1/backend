@@ -51,32 +51,25 @@
         print("<p>Klockan är " . date("H:i:s") . "</p>");
 
         // Array för veckodagen på svenska
-        $veckodag = array("Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"); 
+        $veckodag = array("söndag", "måndag", "tisdag", "onsdag", "torsdag", "fredag", "lördag"); 
+        //ger dagen som ett nummer
         $dagnummer = date('w');
         print("</p>Idag är det " . $veckodag[$dagnummer] . "</p>");
         
         //veckonumret
+        //ger veckodagen som ett nummer
         $veckonummer = date('W');
         print("<p>Veckonumret är: " . $veckonummer . "</p>");
 
         // Array för månaden på svenska
-        $manad = array(" ", "Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December");
+        $manad = array(" ", "januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december");
+        //ger månadens nummer
         $monthnum = date("n");
 
         print("<p>Det är nu " . $manad[$monthnum] . "</p>");
 
 
-        
-        //date_default_timezone_set('Europe/Helsinki');
-        //$day_number = date('w', $date);
-        //echo $day_number ; 
-        
-
-
-        /*setlocale(LC_TIME, "sv");
-        echo utf8_encode(strftime('%A'));*/
-
-
+        //Kolla cookies på egen hand
         ?>
         </article>
     </div>
