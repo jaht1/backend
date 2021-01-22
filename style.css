@@ -10,6 +10,7 @@ html, body {
     max-width: 800px;          /* Hindrar sidan att bli full bredd på stora skärmar */
     min-height: 100%;           /* Gör sidan full höjd */
     margin: auto;               /* Centrerar innehåll */
+    padding-bottom: 50px;
 }
 article {
     padding: 0px 15px;          /* Skuffar in artikeln från vänster (och höger) kant */

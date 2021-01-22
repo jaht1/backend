@@ -73,21 +73,53 @@ print("<p>Vilket betyder att det är nu " . $manad[$monthnum] . "</p>");
         </article>
 
         <article>
-        
+
         <h2>Uppgift 3 </h2>
-        <form action="index.php" method="get">
-            Dag: <input type="text" name="dag"><br>
+        <p>Räkna hur lång tid det är till ett datum.
+        <form action="index.php" method="get" text-align="center">
+             Dag: <input type="text" name="dag"><br>
             Månad: <input type="text" name="manad"><br>
-            
+            år: <input type="text" name="ar"><br>
+
         <input type="submit">
 </form>
 
 
 
         <?php
-        //Läxan är att göra uppgifterna 1-3
-        $dag = $_GET["dag"];
-print("<p>Du vill veta hur länge det är till " . $_GET["dag"] . "." . $_GET["manad"] . ".</p>");
+//Läxan är att göra uppgifterna 1-3
+$dag = $_GET["dag"];
+$manad = $_GET["manad"];
+$ar = $_GET["ar"];
+
+$datum = $dag . "." . $manad . "." . $ar;
+$datum2 = $ar . "-" . $manad . "-" . $dag;
+
+//veckonumret
+$date_string = $datum2;
+$date_int = strtotime($date_string);
+$date_date = date($date_int);
+$week_number = date('W', $date_date);
+
+$today_day = date('d');
+$today_month = date('m');
+$today_year = date('Y');
+print("<p>Du vill veta hur länge det är till " . $_GET["dag"] . "." . $_GET["manad"] . "." . $ar . "</p>");
+print("<p>Då är det vecka " . $week_number . "</p>");
+
+$datetime1 = new DateTime();
+$datetime2 = date_create($datum2);
+
+$interval = date_diff($datetime1, $datetime2);
+
+if (strtotime($datum2) > time()) {
+    echo "<p>Du vill veta tiden mellan idag och ett datum i <b>framtiden</b>. </p>";
+    echo "<p>Det är " . $interval->format('%a dagar, %h timmar, %i minuter och %s sekunder') . " tills det.</p>";
+} else {
+    echo "<p>Du vill veta tiden mellan idag och ett datum i det <b>förflutna</b>. </p>";
+    echo "<p>Det har gått " . $interval->format('%a dagar, %h timmar, %i minuter och %s sekunder') . " sen dess.</p>";
+}
+
 ?>
         </article>
 
