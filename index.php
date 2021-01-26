@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Backend</title>
+    <title>Backend Projekt 1</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -25,7 +25,7 @@
 
 
         <article>
-        <h2>Uppg 1</h2>
+        <h2>Uppg 1 - Användardata</h2>
         <?php
 // Uppg 1 - Superglobals KLART
 //phpinfo(); // Sök här efter uppg 1 info
@@ -70,6 +70,7 @@ print("<p>Vilket betyder att det är nu " . $manad[$monthnum] . "</p>");
 
 //Kolla cookies på egen hand
 ?>
+
         </article>
 
         <article>
@@ -88,43 +89,68 @@ print("<p>Vilket betyder att det är nu " . $manad[$monthnum] . "</p>");
 
         <?php
 //Läxan är att göra uppgifterna 1-3
-$dag = $_GET["dag"];
-$manad = $_GET["manad"];
-$ar = $_GET["ar"];
+//kolla om man tryckt på submit
+//Ifall det inte fungerar, prova $GET ist för $REQUEST
+if (isset($_REQUEST["dag"]) && isset($_REQUEST["manad"]) && isset($_REQUEST["ar"])) {
+    $dag = $_GET["dag"];
+    $manad = $_GET["manad"];
+    $ar = $_GET["ar"];
 
-$datum = $dag . "." . $manad . "." . $ar;
-$datum2 = $ar . "-" . $manad . "-" . $dag;
+    $datum = $dag . "." . $manad . "." . $ar;
+    $datum2 = $ar . "-" . $manad . "-" . $dag;
 
 //veckonumret
-$date_string = $datum2;
-$date_int = strtotime($date_string);
-$date_date = date($date_int);
-$week_number = date('W', $date_date);
+    $date_string = $datum2;
+    $date_int = strtotime($date_string);
+    $date_date = date($date_int);
+    $week_number = date('W', $date_date);
 
-$today_day = date('d');
-$today_month = date('m');
-$today_year = date('Y');
-print("<p>Du vill veta hur länge det är till " . $_GET["dag"] . "." . $_GET["manad"] . "." . $ar . "</p>");
-print("<p>Då är det vecka " . $week_number . "</p>");
+    $today_day = date('d');
+    $today_month = date('m');
+    $today_year = date('Y');
+    print("<p>Du vill veta hur länge det är till " . $_GET["dag"] . "." . $_GET["manad"] . "." . $ar . "</p>");
+    print("<p>Då är det vecka " . $week_number . "</p>");
 
-$datetime1 = new DateTime();
-$datetime2 = date_create($datum2);
+    $datetime1 = new DateTime();
+    $datetime2 = date_create($datum2);
 
-$interval = date_diff($datetime1, $datetime2);
+    $interval = date_diff($datetime1, $datetime2);
 
-if (strtotime($datum2) > time()) {
-    echo "<p>Du vill veta tiden mellan idag och ett datum i <b>framtiden</b>. </p>";
-    echo "<p>Det är " . $interval->format('%a dagar, %h timmar, %i minuter och %s sekunder') . " tills det.</p>";
-} else {
-    echo "<p>Du vill veta tiden mellan idag och ett datum i det <b>förflutna</b>. </p>";
-    echo "<p>Det har gått " . $interval->format('%a dagar, %h timmar, %i minuter och %s sekunder') . " sen dess.</p>";
+    if (strtotime($datum2) > time()) {
+        echo "<p>Du vill veta tiden mellan idag och ett datum i <b>framtiden</b>. </p>";
+        echo "<p>Det är " . $interval->format('%a dagar, %h timmar, %i minuter och %s sekunder') . " tills det.</p>";
+    } else {
+        echo "<p>Du vill veta tiden mellan idag och ett datum i det <b>förflutna</b>. </p>";
+        echo "<p>Det har gått " . $interval->format('%a dagar, %h timmar, %i minuter och %s sekunder') . " sen dess.</p>";
+    }
 }
-
 ?>
 
 
         </article>
 
+        <article>
+        <h2>Uppgift 4</h2>
+
+        </article>
+
+
+<article>
+<h2>Uppgift 5 - Cookie</h2>
+<?php
+
+//Ge användaren en cookie
+$cookie_name = "username";
+$cookie_value = "jahti";
+setcookie($cookie_name, $cookie_value, time() + (86400 * 2), "/");
+
+//kolla ifall användaren har en cookie
+if (isset($COOKIE_["username"])) {
+    print("<p>Välkommen " . $cookie_value . "!</p>");
+}
+?>
+
+</article>
     </div>
 </body>
 
