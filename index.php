@@ -1,3 +1,7 @@
+<?php 
+session_start();
+include "functions.php" 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,21 +16,14 @@
 <body>
     <!-- Containern har max bredd 800px -->
     <div id="container">
-        <nav>
-            <!-- Logo och meny finns i nav -->
-            <ul>
-                <a id="current" href="home/">Home</a>
-                <a href="projekt1/">Projekt 1</a>
-                <a href="projekt2/">Projekt 2</a>
-            </ul>
-        </nav>
+        <?php include "navbar.php" ?>
 
         <!-- Artiklar placerar sig snyggt efter varann -->
 
 
         <article>
-        <h2>Uppg 1 - Användardata</h2>
-        <?php
+            <h2>Uppg 1 - Användardata</h2>
+            <?php
 // Uppg 1 - Superglobals KLART
 //phpinfo(); // Sök här efter uppg 1 info
 
@@ -46,7 +43,7 @@ print("<p> PHP versionen: " . phpversion() . "</p>");
 
         <article>
             <h2>Uppg 2</h2>
-        <?php
+            <?php
 print("<p>Idag är det den " . date("d.m.Y") . "</p>");
 print("<p>Klockan är " . date("H:i:s") . "</p>");
 
@@ -75,19 +72,19 @@ print("<p>Vilket betyder att det är nu " . $manad[$monthnum] . "</p>");
 
         <article>
 
-        <h2>Uppgift 3 </h2>
-        <p>Räkna hur lång tid det är till ett datum.
-        <form action="index.php" method="get" text-align="center">
-             Dag: <input type="text" name="dag"><br>
-            Månad: <input type="text" name="manad"><br>
-            år: <input type="text" name="ar"><br>
+            <h2>Uppgift 3 </h2>
+            <p>Räkna hur lång tid det är till ett datum.
+            <form action="index.php" method="get" text-align="center">
+                Dag: <input type="text" name="dag"><br>
+                Månad: <input type="text" name="manad"><br>
+                år: <input type="text" name="ar"><br>
 
-        <input type="submit">
-</form>
+                <input type="submit">
+            </form>
 
 
 
-        <?php
+            <?php
 //Läxan är att göra uppgifterna 1-3
 //kolla om man tryckt på submit
 //Ifall det inte fungerar, prova $GET ist för $REQUEST
@@ -130,14 +127,27 @@ if (isset($_REQUEST["dag"]) && isset($_REQUEST["manad"]) && isset($_REQUEST["ar"
         </article>
 
         <article>
-        <h2>Uppgift 4</h2>
+            <h2>Uppgift 4</h2>
+            <form action="index.php" method="get">
+                Användarnamn: <input type="text" name="username"><br>
+                E-mail: <input type="text" name="email"><br>
+                <input type="submit">
+            </form>
+
+            <?php
+if (isset($_REQUEST['username']) && isset($_REQUEST['email'])) {
+    //Uppg 4 skicka confirmation mail
+    $username = test_input($_GET['username']);
+    print($username);
+}
+?>
 
         </article>
 
 
-<article>
-<h2>Uppgift 5 - Cookie</h2>
-<?php
+        <article>
+            <h2>Uppgift 5 - Cookie</h2>
+            <?php
 
 //Ge användaren en cookie
 $cookie_name = "username";
@@ -145,12 +155,24 @@ $cookie_value = "jahti";
 setcookie($cookie_name, $cookie_value, time() + (86400 * 2), "/");
 
 //kolla ifall användaren har en cookie
-if (isset($COOKIE_["username"])) {
+if (isset($_COOKIE["username"])) {
     print("<p>Välkommen " . $cookie_value . "!</p>");
 }
 ?>
 
-</article>
+        </article>
+
+        <article>
+        <h2>Uppgift 6 - Spara användardata på servern</h2>
+
+<?php
+
+//slutför uppg 4 & 5
+$_SESSION['user'] = "jenna";
+print("<p>Endast Jenna har tillgång till dark web </p>");
+print("<a href='darkweb.php'>DARK WEB</a>")
+?>
+        </article>
     </div>
 </body>
 
