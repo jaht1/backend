@@ -1,6 +1,6 @@
-<?php 
+<?php
 session_start();
-include "functions.php" 
+include "functions.php"
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,7 @@ include "functions.php"
 <body>
     <!-- Containern har max bredd 800px -->
     <div id="container">
-        <?php include "navbar.php" ?>
+        <?php include "navbar.php"?>
 
         <!-- Artiklar placerar sig snyggt efter varann -->
 
@@ -89,36 +89,43 @@ print("<p>Vilket betyder att det är nu " . $manad[$monthnum] . "</p>");
 //kolla om man tryckt på submit
 //Ifall det inte fungerar, prova $GET ist för $REQUEST
 if (isset($_REQUEST["dag"]) && isset($_REQUEST["manad"]) && isset($_REQUEST["ar"])) {
+
     $dag = $_GET["dag"];
     $manad = $_GET["manad"];
     $ar = $_GET["ar"];
 
-    $datum = $dag . "." . $manad . "." . $ar;
-    $datum2 = $ar . "-" . $manad . "-" . $dag;
+    if (is_numeric($dag) && is_numeric($manad) && is_numeric($ar)) {
+        $datum = $dag . "." . $manad . "." . $ar;
+        $datum2 = $ar . "-" . $manad . "-" . $dag;
 
 //veckonumret
-    $date_string = $datum2;
-    $date_int = strtotime($date_string);
-    $date_date = date($date_int);
-    $week_number = date('W', $date_date);
+        $date_string = $datum2;
+        $date_int = strtotime($date_string);
+        $date_date = date($date_int);
+        $week_number = date('W', $date_date);
 
-    $today_day = date('d');
-    $today_month = date('m');
-    $today_year = date('Y');
-    print("<p>Du vill veta hur länge det är till " . $_GET["dag"] . "." . $_GET["manad"] . "." . $ar . "</p>");
-    print("<p>Då är det vecka " . $week_number . "</p>");
+        $today_day = date('d');
+        $today_month = date('m');
+        $today_year = date('Y');
 
-    $datetime1 = new DateTime();
-    $datetime2 = date_create($datum2);
+        print("<p>Du vill veta hur länge det är till " . $_GET["dag"] . "." . $_GET["manad"] . "." . $ar . "</p>");
+        print("<p>Då är det vecka " . $week_number . "</p>");
 
-    $interval = date_diff($datetime1, $datetime2);
+        $datetime1 = new DateTime();
+        $datetime2 = date_create($datum2);
 
-    if (strtotime($datum2) > time()) {
-        echo "<p>Du vill veta tiden mellan idag och ett datum i <b>framtiden</b>. </p>";
-        echo "<p>Det är " . $interval->format('%a dagar, %h timmar, %i minuter och %s sekunder') . " tills det.</p>";
-    } else {
-        echo "<p>Du vill veta tiden mellan idag och ett datum i det <b>förflutna</b>. </p>";
-        echo "<p>Det har gått " . $interval->format('%a dagar, %h timmar, %i minuter och %s sekunder') . " sen dess.</p>";
+        $interval = date_diff($datetime1, $datetime2);
+
+        if (strtotime($datum2) > time()) {
+            echo "<p>Du vill veta tiden mellan idag och ett datum i <b>framtiden</b>. </p>";
+            echo "<p>Det är " . $interval->format('%a dagar, %h timmar, %i minuter och %s sekunder') . " tills det.</p>";
+        } else {
+            echo "<p>Du vill veta tiden mellan idag och ett datum i det <b>förflutna</b>. </p>";
+            echo "<p>Det har gått " . $interval->format('%a dagar, %h timmar, %i minuter och %s sekunder') . " sen dess.</p>";
+        }
+    }
+    else{
+        echo "<p style='color:red;''>Checka inmatningen. Det ser ut som att du angett något annat än siffror.</p>";
     }
 }
 ?>
@@ -135,10 +142,30 @@ if (isset($_REQUEST["dag"]) && isset($_REQUEST["manad"]) && isset($_REQUEST["ar"
             </form>
 
             <?php
+
+$subject = "Bekräftelse email";
+
+function password_generate($chars)
+{
+    $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
+    return substr(str_shuffle($data), 0, $chars);
+}
+$pswrd = password_generate(10);
+
+$txt = "Välkommen " . $_GET['username'] .
+    "!\nHär är ditt lösenord: \n" . $pswrd;
 if (isset($_REQUEST['username']) && isset($_REQUEST['email'])) {
     //Uppg 4 skicka confirmation mail
     $username = test_input($_GET['username']);
-    print($username);
+    print("<p>" . $username . "</p>");
+
+    if (filter_var($_GET['email'], FILTER_VALIDATE_EMAIL)) {
+        mail($_GET['email'], $subject, $txt);
+        echo ("<p>Vi har skickat ett lösenord åt dig till adressen " . $_GET['email'] . "</p>");
+    } else {
+        echo ("<p style='color:red;'>" . $_GET['email'] . " är inte en giltig email adress </p>");
+    }
+
 }
 ?>
 
@@ -167,7 +194,7 @@ if (isset($_COOKIE["username"])) {
 
 <?php
 
-//slutför uppg 4 & 5
+//slutför uppg 4 & 5 & 6
 $_SESSION['user'] = "jenna";
 print("<p>Endast Jenna har tillgång till dark web </p>");
 print("<a href='darkweb.php'>DARK WEB</a>")
