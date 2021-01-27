@@ -200,6 +200,15 @@ print("<p>Endast Jenna har tillgång till dark web </p>");
 print("<a href='darkweb.php'>DARK WEB</a>")
 ?>
         </article>
+        <article>
+        <h2>Uppg 7 - Filhantering</h2>
+        <p>Lägg till ett filnamn:</p>
+        <form action="index.php" method="get">
+        Filnamn: <input type="text" name="filnamn"><br>
+        <input type="submit">
+        </form>
+        </article>
+
     </div>
 </body>
 
