@@ -123,8 +123,7 @@ if (isset($_REQUEST["dag"]) && isset($_REQUEST["manad"]) && isset($_REQUEST["ar"
             echo "<p>Du vill veta tiden mellan idag och ett datum i det <b>förflutna</b>. </p>";
             echo "<p>Det har gått " . $interval->format('%a dagar, %h timmar, %i minuter och %s sekunder') . " sen dess.</p>";
         }
-    }
-    else{
+    } else {
         echo "<p style='color:red;''>Checka inmatningen. Det ser ut som att du angett något annat än siffror.</p>";
     }
 }
@@ -191,24 +190,56 @@ if (isset($_COOKIE["username"])) {
 
         <article>
         <h2>Uppgift 6 - Spara användardata på servern</h2>
-
+        <!---2. ändra method till post-->
+        <form action="index.php" method="get">
+                Login: <input type="text" name="login"><br>
+                Password: <input type="text" name="password"><br>
+                <input type="submit">
+            </form>
 <?php
 
-//slutför uppg 4 & 5 & 6
+//todo: checka om det är samma user
+
+//test_input hindrar script etc
+//1. ändra get till post
+$login = test_input($_GET['login']);
+$password = test_input($_GET['password']);
+
+//if ($login =="jenna"){
 $_SESSION['user'] = "jenna";
-print("<p>Endast Jenna har tillgång till dark web </p>");
-print("<a href='darkweb.php'>DARK WEB</a>")
+print("<p>Endast jenna har tillgång till dark web </p>");
+print("<a href='darkweb.php'>DARK WEB</a>");
+//}
+//else{
+//print("<p>Inga hemlisar för skurkar </p>");
+//}
 ?>
         </article>
         <article>
         <h2>Uppg 7 - Filhantering</h2>
-        <p>Lägg till ett filnamn:</p>
+        <!---<p>Lägg till ett filnamn:</p>
         <form action="index.php" method="get">
         Filnamn: <input type="text" name="filnamn"><br>
         <input type="submit">
-        </form>
+        </form>-->
+
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+  Select image to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="submit" value="Upload Image" name="submit">
+</form>
         </article>
 
+
+<article>
+<h2>Uppgift 8 </h2>
+<?php
+$myfile = fopen("besok.log", "a+") or die("Unable to open file!");
+fwrite($myfile, "\njenna var här kl. " . time());
+fclose($myfile);
+?>
+
+</article>
     </div>
 </body>
 
