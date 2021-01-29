@@ -62,8 +62,8 @@ print("<p>Veckonumret är: " . $veckonummer . "</p>");
 $manad = array(" ", "januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december");
 //ger månadens nummer
 $monthnum = date("n");
-print("<p>Det är nu den " . $monthnum . ":nde månaden </p>");
-print("<p>Vilket betyder att det är nu " . $manad[$monthnum] . "</p>");
+print("<p>Det är nu månad nummer: " . $monthnum . "</p>");
+print("<p>Vilket betyder att det nu är " . $manad[$monthnum] . "</p>");
 
 //Kolla cookies på egen hand
 ?>
