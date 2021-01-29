@@ -179,11 +179,20 @@ if (isset($_REQUEST['username']) && isset($_REQUEST['email'])) {
 $cookie_name = "username";
 $cookie_value = "jahti";
 setcookie($cookie_name, $cookie_value, time() + (86400 * 2), "/");
+$dt = date("d.m.Y");
+
 
 //kolla ifall användaren har en cookie
 if (isset($_COOKIE["username"])) {
-    print("<p>Välkommen " . $cookie_value . "!</p>");
+    //print("<p>Välkommen igen " . $cookie_value . "!</p>");
+    print("<p>Välkommen tillbaka!</p>");
+    //print("<p>Ditt första besök var " . $dt . "</p>");
 }
+else {
+    print("Hej nya besökare!");
+}
+
+//Extrapoäng-delen fattas
 ?>
 
         </article>
@@ -191,7 +200,7 @@ if (isset($_COOKIE["username"])) {
         <article>
         <h2>Uppgift 6 - Spara användardata på servern</h2>
         <!---2. ändra method till post-->
-        <form action="index.php" method="get">
+        <form action="index.php" method="post">
                 Login: <input type="text" name="login"><br>
                 Password: <input type="text" name="password"><br>
                 <input type="submit">
@@ -202,11 +211,12 @@ if (isset($_COOKIE["username"])) {
 
 //test_input hindrar script etc
 //1. ändra get till post
-$login = test_input($_GET['login']);
-$password = test_input($_GET['password']);
+$login = test_input($_REQUEST['login']);
+$password = test_input($_REQUEST['password']);
 
 //if ($login =="jenna"){
-$_SESSION['user'] = "jenna";
+$_SESSION['user'] = $login;
+//$_SESSION['user'] = "jenna";
 print("<p>Endast jenna har tillgång till dark web </p>");
 print("<a href='darkweb.php'>DARK WEB</a>");
 //}
@@ -224,8 +234,8 @@ print("<a href='darkweb.php'>DARK WEB</a>");
         </form>-->
 
         <form action="upload.php" method="post" enctype="multipart/form-data">
-  Select image to upload:
-  <input type="file" name="fileToUpload" id="fileToUpload">
+  Select image to upload:<br>
+  <input type="file" name="fileToUpload" id="fileToUpload"><br>
   <input type="submit" value="Upload Image" name="submit">
 </form>
         </article>
@@ -235,7 +245,8 @@ print("<a href='darkweb.php'>DARK WEB</a>");
 <h2>Uppgift 8 </h2>
 <?php
 $myfile = fopen("besok.log", "a+") or die("Unable to open file!");
-fwrite($myfile, "\njenna var här kl. " . time());
+fwrite($myfile, $login . " var här den " . date("d.m.Y") . " kl. " . date("H:i:s") );
+fwrite($myfile, "\nbesökarens ip-adress: " . $_SERVER['REMOTE_ADDR'] . "\n\n");
 fclose($myfile);
 ?>
 
