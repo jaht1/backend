@@ -17,6 +17,8 @@ if ($_SESSION['user'] == 'jenna') {
 //TODO2:annars styr användaren till login sidan (index.php)
 else {
     print("<p> Gå bort! Försök int</p>");
+    header("Location: index.php");
+    exit();
 }
 
 //Gör fler sidor med t.ex. "välkommen tillbaka"-text

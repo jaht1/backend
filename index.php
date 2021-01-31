@@ -213,16 +213,18 @@ else {
 //1. ändra get till post
 $login = test_input($_REQUEST['login']);
 $password = test_input($_REQUEST['password']);
-
-//if ($login =="jenna"){
 $_SESSION['user'] = $login;
+
+if ($login =="jenna"){
 //$_SESSION['user'] = "jenna";
 print("<p>Endast jenna har tillgång till dark web </p>");
 print("<a href='darkweb.php'>DARK WEB</a>");
-//}
-//else{
-//print("<p>Inga hemlisar för skurkar </p>");
-//}
+}
+else{
+print("<p>Inga hemlisar för skurkar </p>");
+print("<a href='visitor.php'>sidan för gäster</a><br>");
+//print("du har inte tillgång till <a href='darkweb.php'>DARK WEB</a>");
+}
 ?>
         </article>
         <article>
@@ -238,6 +240,9 @@ print("<a href='darkweb.php'>DARK WEB</a>");
   <input type="file" name="fileToUpload" id="fileToUpload"><br>
   <input type="submit" value="Upload Image" name="submit">
 </form>
+<?php
+
+?>
         </article>
 
 
@@ -248,6 +253,8 @@ $myfile = fopen("besok.log", "a+") or die("Unable to open file!");
 fwrite($myfile, $login . " var här den " . date("d.m.Y") . " kl. " . date("H:i:s") );
 fwrite($myfile, "\nbesökarens ip-adress: " . $_SERVER['REMOTE_ADDR'] . "\n\n");
 fclose($myfile);
+
+print("<a href='besok.log'>besök log</a>");
 ?>
 
 </article>
