@@ -65,6 +65,7 @@ $monthnum = date("n");
 print("<p>Det är nu månad nummer: " . $monthnum . "</p>");
 print("<p>Vilket betyder att det nu är " . $manad[$monthnum] . "</p>");
 
+
 //Kolla cookies på egen hand
 ?>
 
@@ -254,7 +255,7 @@ print("<a href='visitor.php'>sidan för gäster</a><br>");
 
 
 <article>
-<h2>Uppgift 8 </h2>
+<h2>Uppgift 8 - Besöksräknare </h2>
 <?php
 $myfile = fopen("besok.log", "a+") or die("Unable to open file!");
 fwrite($myfile, $login . " var här den " . date("d.m.Y") . " kl. " . date("H:i:s") );
@@ -266,9 +267,9 @@ print("<a href='besok.log'>besök log</a>");
 
 </article>
 
-<article>
-<h2>Uppgift 9</h2>
 
+<article>
+<h2>Uppgift 9 </h2>
 </article>
 
     </div>
