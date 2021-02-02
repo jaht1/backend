@@ -265,6 +265,12 @@ print("<a href='besok.log'>besök log</a>");
 ?>
 
 </article>
+
+<article>
+<h2>Uppgift 9</h2>
+
+</article>
+
     </div>
 </body>
 
