@@ -182,14 +182,21 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 2), "/");
 $dt = date("d.m.Y");
 
 
+$firstVisit = "";
 //kolla ifall användaren har en cookie
 if (isset($_COOKIE["username"])) {
     //print("<p>Välkommen igen " . $cookie_value . "!</p>");
+    
+    /*$elapsedTime = time()-$_COOKIE[" firstVisitTime" ];
+    $elapsedTimeMinutes = (int) ($elapsedTime / 60);
+    $elapsedTimeSeconds = $elapsedTime % 60;*/
     print("<p>Välkommen tillbaka!</p>");
     //print("<p>Ditt första besök var " . $dt . "</p>");
 }
 else {
     print("Hej nya besökare!");
+    $firstVisit = date("d.m.Y");
+    //setcookie(" firstVisitTime" , time(), time() + 60 * 60 * 24 * 365," /" ," " );
 }
 
 //Extrapoäng-delen fattas
