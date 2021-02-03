@@ -176,23 +176,28 @@ if (isset($_REQUEST['username']) && isset($_REQUEST['email'])) {
             <?php
 
 //Ge användaren en cookie
-$cookie_name = 'user';
-$cookie_value = $_SERVER['REMOTE_USER'];
-$cookie_time = "firstvisit";
+$cookie_name = "user";
+$cookie_value = "username";
+$cookie_first = "firstVisit";
+$cookie_last = "lastVisit";
+
 
 setcookie($cookie_name, $cookie_value, time() + (86400 * 2), "/");
 $dt = date("d.m.Y");
 
-$firstVisit = "";
+//$firstVisit = "";
 //kolla ifall användaren har en cookie
-if (isset($_COOKIE["username"])) {
-
+if (isset($_COOKIE["user"])) {
+    //setcookie($cookie_last, date("d.m.Y H:i:s"));
     print("<p>Välkommen tillbaka!</p>");
+    //print("<p>Senaste besöket: " . $_COOKIE[$cookie_last] . "</p>");
+    print("<p>Första besöket: " . $_COOKIE[$cookie_first] . "</p>");
+    
 
 } else {
     print("Hej nya besökare!");
-    $firstVisit = date("d.m.Y");
-    setcookie($cookie_time, time());
+    //$firstVisit = date("d.m.Y");
+    setcookie($cookie_first, date("d.m.Y H:i:s"));
 }
 
 //Extrapoäng-delen fattas
