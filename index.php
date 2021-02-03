@@ -65,7 +65,6 @@ $monthnum = date("n");
 print("<p>Det är nu månad nummer: " . $monthnum . "</p>");
 print("<p>Vilket betyder att det nu är " . $manad[$monthnum] . "</p>");
 
-
 //Kolla cookies på egen hand
 ?>
 
@@ -177,27 +176,23 @@ if (isset($_REQUEST['username']) && isset($_REQUEST['email'])) {
             <?php
 
 //Ge användaren en cookie
-$cookie_name = "username";
-$cookie_value = "jahti";
+$cookie_name = 'user';
+$cookie_value = $_SERVER['REMOTE_USER'];
+$cookie_time = "firstvisit";
+
 setcookie($cookie_name, $cookie_value, time() + (86400 * 2), "/");
 $dt = date("d.m.Y");
-
 
 $firstVisit = "";
 //kolla ifall användaren har en cookie
 if (isset($_COOKIE["username"])) {
-    //print("<p>Välkommen igen " . $cookie_value . "!</p>");
-    
-    /*$elapsedTime = time()-$_COOKIE[" firstVisitTime" ];
-    $elapsedTimeMinutes = (int) ($elapsedTime / 60);
-    $elapsedTimeSeconds = $elapsedTime % 60;*/
+
     print("<p>Välkommen tillbaka!</p>");
-    //print("<p>Ditt första besök var " . $dt . "</p>");
-}
-else {
+
+} else {
     print("Hej nya besökare!");
     $firstVisit = date("d.m.Y");
-    //setcookie(" firstVisitTime" , time(), time() + 60 * 60 * 24 * 365," /" ," " );
+    setcookie($cookie_time, time());
 }
 
 //Extrapoäng-delen fattas
@@ -223,14 +218,13 @@ $login = test_input($_REQUEST['login']);
 $password = test_input($_REQUEST['password']);
 $_SESSION['user'] = $login;
 
-if ($login =="jenna"){
+if ($login == "jenna") {
 //$_SESSION['user'] = "jenna";
-print("<p>Endast jenna har tillgång till dark web </p>");
-print("<a href='darkweb.php'>DARK WEB</a>");
-}
-else{
-print("<p>Inga hemlisar för skurkar </p>");
-print("<a href='visitor.php'>sidan för gäster</a><br>");
+    print("<p>Endast jenna har tillgång till dark web </p>");
+    print("<a href='darkweb.php'>DARK WEB</a>");
+} else {
+    print("<p>Inga hemlisar för skurkar </p>");
+    print("<a href='visitor.php'>sidan för gäster</a><br>");
 //print("du har inte tillgång till <a href='darkweb.php'>DARK WEB</a>");
 }
 ?>
@@ -257,9 +251,13 @@ print("<a href='visitor.php'>sidan för gäster</a><br>");
 <article>
 <h2>Uppgift 8 - Besöksräknare </h2>
 <?php
+
+$views = $_SESSION['views'] = $_SESSION['views'] + 1;
+
 $myfile = fopen("besok.log", "a+") or die("Unable to open file!");
-fwrite($myfile, $login . " var här den " . date("d.m.Y") . " kl. " . date("H:i:s") );
-fwrite($myfile, "\nbesökarens ip-adress: " . $_SERVER['REMOTE_ADDR'] . "\n\n");
+fwrite($myfile, $_SERVER['REMOTE_USER'] . " besökte den " . date("d.m.Y") . " kl. " . date("H:i:s"));
+fwrite($myfile, "\nbesökarens ip-adress: " . $_SERVER['REMOTE_ADDR'] . "\n");
+fwrite($myfile, "Totala antal besökare: " . $views . "\n\n");
 fclose($myfile);
 
 print("<a href='besok.log'>besök log</a>");
@@ -269,7 +267,24 @@ print("<a href='besok.log'>besök log</a>");
 
 
 <article>
-<h2>Uppgift 9 </h2>
+<h2>Uppgift 9 - Gästbok</h2>
+lämna en kommentar!
+<form method="post" action="index.php">
+                <textarea name="comment"></textarea><br>
+                <input type="submit">
+            </form>
+<?php
+//$myfile = fopen("comment.log", "r+") or die("Unable to open file!");
+//$_SERVER['REMOTE_USER']
+if (isset($_REQUEST["comment"])) {
+
+    $myfile = fopen("comment.log", "r+") or die("Unable to open file!");
+
+    fwrite($myfile, "\n\n" . date("d.m.Y") . " kl. " . date("H:i:s") . " ". $_SERVER['REMOTE_USER'] . " skriver: " . $_REQUEST["comment"] . "\n\n");
+    fclose($myfile);
+}
+
+?>
 </article>
 
     </div>
