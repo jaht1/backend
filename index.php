@@ -279,8 +279,9 @@ lämna en kommentar!
 if (isset($_REQUEST["comment"])) {
 
     $myfile = fopen("comment.log", "r+") or die("Unable to open file!");
-
-    fwrite($myfile, "\n\n" . date("d.m.Y") . " kl. " . date("H:i:s") . " ". $_SERVER['REMOTE_USER'] . " skriver: " . $_REQUEST["comment"] . "\n\n");
+    $old_content = file_get_contents("comment.log");
+    fwrite($myfile, "\n" . date("d.m.Y") . " kl. " . date("H:i:s") . " ". $_SERVER['REMOTE_USER'] . " skriver: " . $_REQUEST["comment"] . "\n" . $old_content ."\n");
+    //fwrite($myfile, $old_content);
     fclose($myfile);
 }
 
