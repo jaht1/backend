@@ -221,10 +221,11 @@ if (isset($_COOKIE["user"])) {
 //1. ändra get till post
 $login = test_input($_REQUEST['login']);
 $password = test_input($_REQUEST['password']);
-$_SESSION['user'] = $login;
+
 
 if ($login == "jenna") {
 //$_SESSION['user'] = "jenna";
+    $_SESSION['user'] = $login;
     print("<p>Endast jenna har tillgång till dark web </p>");
     print("<a href='darkweb.php'>DARK WEB</a>");
 } else {
@@ -236,11 +237,6 @@ if ($login == "jenna") {
         </article>
         <article>
         <h2>Uppg 7 - Filhantering</h2>
-        <!---<p>Lägg till ett filnamn:</p>
-        <form action="index.php" method="get">
-        Filnamn: <input type="text" name="filnamn"><br>
-        <input type="submit">
-        </form>-->
 
         <form action="upload.php" method="post" enctype="multipart/form-data">
   Select image to upload:<br>
@@ -274,7 +270,7 @@ print("<a href='besok.log'>besök log</a>");
 <article>
 <h2>Uppgift 9 - Gästbok</h2>
 lämna en kommentar!
-<form method="post" action="index.php">
+<form method="get" action="index.php">
                 <textarea name="comment"></textarea><br>
                 <input type="submit">
             </form>
