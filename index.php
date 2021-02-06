@@ -183,8 +183,10 @@ $cookie_value = "username";
 //$cookie_last = "lastVisit";
 $firstvisit = time();
 
+$forstaBesok = "besok1";
 setcookie($cookie_name, $cookie_value, time() + (86400 * 2), "/");
-$dt = date("d.m.Y");
+
+
 
 //$firstVisit = "";
 //kolla ifall användaren har en cookie
@@ -192,13 +194,14 @@ if (isset($_COOKIE["user"])) {
     //setcookie($cookie_last, date("d.m.Y H:i:s"));
     print("<p>Välkommen tillbaka!</p>");
     //print("<p>Senaste besöket: " . $_COOKIE[$cookie_last] . "</p>");
-    print("<p>Första besöket: " . date("d.m.Y H:i:s", $_COOKIE["cookie_first"]) . "</p>");
-    //print("Första besök 2" . $_COOKIE[$cookie_first]);
+    print("<p>Första besöket: " . date("d.m.Y", $_COOKIE["cookie_first"]) . "</p>");
+    print("<p>Första besök 2 " . $_COOKIE[$forstaBesok] . "</p>");
 
 } else {
     print("Hej nya besökare!");
-    //$firstVisit = date("d.m.Y");
+    
     setcookie("cookie_first", $firstvisit, time() * (86400 * 30), "/");
+    setcookie($forstaBesok, date("d.m.Y H:i:s"), time() * (86400 * 30), "/");
     //setcookie($cookie_first, date("d.m.Y H:i:s"), time()*(86400*30), "/"); //original
 }
 
