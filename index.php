@@ -295,7 +295,7 @@ print("<a href='comment.log'>kommentarerna</a>")
 </article>
 
 <article><br>
-<a href="rapport.php/"><h2>Projekt 1 rapport</h2></a>
+<a href="rapport.php/"><h2>Jennas Projekt 1 rapport</h2></a>
 </article>
     </div>
 </body>
