@@ -242,14 +242,19 @@ if ($login == "jenna") {
         <article>
         <h2>Uppg 7 - Filhantering</h2>
 
-        <form action="upload.php" method="post" enctype="multipart/form-data">
+        <!--<form action="upload.php" method="post" enctype="multipart/form-data">
   Select image to upload:<br>
   <input type="file" name="fileToUpload" id="fileToUpload"><br>
   <input type="submit" value="Upload Image" name="submit">
 </form>
+-->
+<form action="upload.php" method="POST" enctype="multipart/form-data">
+<input type="file" name="file" />
+<button type="submit" name="submit">Upload image</button>
 <?php
 
 ?>
+
         </article>
 
 
