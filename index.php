@@ -194,13 +194,13 @@ if (isset($_COOKIE["user"])) {
     //setcookie($cookie_last, date("d.m.Y H:i:s"));
     print("<p>Välkommen tillbaka!</p>");
     //print("<p>Senaste besöket: " . $_COOKIE[$cookie_last] . "</p>");
-    print("<p>Första besöket: " . date("d.m.Y", $_COOKIE["cookie_first"]) . "</p>");
-    print("<p>Första besök 2 " . $_COOKIE[$forstaBesok] . "</p>");
+    //print("<p>Första besöket: " . date("d.m.Y", $_COOKIE["cookie_first"]) . "</p>");
+    print("<p>Ditt första besök var " . $_COOKIE[$forstaBesok] . "</p>");
 
 } else {
     print("Hej nya besökare!");
     
-    setcookie("cookie_first", $firstvisit, time() * (86400 * 30), "/");
+    //setcookie("cookie_first", $firstvisit, time() * (86400 * 30), "/");
     setcookie($forstaBesok, date("d.m.Y H:i:s"), time() * (86400 * 30), "/");
     //setcookie($cookie_first, date("d.m.Y H:i:s"), time()*(86400*30), "/"); //original
 }
@@ -290,10 +290,11 @@ if (isset($_REQUEST["comment"])) {
     fclose($myfile);
 }
 
+print("<a href='comment.log'>kommentarerna</a>")
 ?>
 </article>
 
-<article>
+<article><br>
 <a href="rapport.php/"><h2>Projekt 1 rapport</h2></a>
 </article>
     </div>
