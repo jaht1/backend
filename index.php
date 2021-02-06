@@ -18,6 +18,7 @@ include "functions.php"
     <div id="container">
         <?php include "navbar.php"?>
 
+
         <!-- Artiklar placerar sig snyggt efter varann -->
 
 
@@ -178,9 +179,9 @@ if (isset($_REQUEST['username']) && isset($_REQUEST['email'])) {
 //Ge användaren en cookie
 $cookie_name = "user";
 $cookie_value = "username";
-$cookie_first = "firstVisit";
-$cookie_last = "lastVisit";
-
+//$cookie_first = "firstVisit";
+//$cookie_last = "lastVisit";
+$firstvisit = time();
 
 setcookie($cookie_name, $cookie_value, time() + (86400 * 2), "/");
 $dt = date("d.m.Y");
@@ -191,13 +192,14 @@ if (isset($_COOKIE["user"])) {
     //setcookie($cookie_last, date("d.m.Y H:i:s"));
     print("<p>Välkommen tillbaka!</p>");
     //print("<p>Senaste besöket: " . $_COOKIE[$cookie_last] . "</p>");
-    print("<p>Första besöket: " . $_COOKIE[$cookie_first] . "</p>");
-    
+    print("<p>Första besöket: " . date("d.m.Y H:i:s", $_COOKIE["cookie_first"]) . "</p>");
+    //print("Första besök 2" . $_COOKIE[$cookie_first]);
 
 } else {
     print("Hej nya besökare!");
     //$firstVisit = date("d.m.Y");
-    setcookie($cookie_first, date("d.m.Y H:i:s"));
+    setcookie("cookie_first", $firstvisit, time() * (86400 * 30), "/");
+    //setcookie($cookie_first, date("d.m.Y H:i:s"), time()*(86400*30), "/"); //original
 }
 
 //Extrapoäng-delen fattas
@@ -221,7 +223,6 @@ if (isset($_COOKIE["user"])) {
 //1. ändra get till post
 $login = test_input($_REQUEST['login']);
 $password = test_input($_REQUEST['password']);
-
 
 if ($login == "jenna") {
 //$_SESSION['user'] = "jenna";
@@ -281,7 +282,7 @@ if (isset($_REQUEST["comment"])) {
 
     $myfile = fopen("comment.log", "r+") or die("Unable to open file!");
     $old_content = file_get_contents("comment.log");
-    fwrite($myfile, "\n" . date("d.m.Y") . " kl. " . date("H:i:s") . " ". $_SERVER['REMOTE_USER'] . " skriver: " . $_REQUEST["comment"] . "\n" . $old_content ."\n");
+    fwrite($myfile, "\n" . date("d.m.Y") . " kl. " . date("H:i:s") . " " . $_SERVER['REMOTE_USER'] . " skriver: " . $_REQUEST["comment"] . "\n" . $old_content . "\n");
     //fwrite($myfile, $old_content);
     fclose($myfile);
 }
@@ -289,6 +290,9 @@ if (isset($_REQUEST["comment"])) {
 ?>
 </article>
 
+<article>
+<a href="rapport.php/"><h2>Projekt 1 rapport</h2></a>
+</article>
     </div>
 </body>
 
