@@ -14,6 +14,9 @@ html, body {
 }
 article {
     padding: 0px 15px;          /* Skuffar in artikeln från vänster (och höger) kant */
+    font-size: 16px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
 }
 /* Huvudmenyn */
 nav {
@@ -27,5 +30,5 @@ nav a {                             /* multiple selectors */
     padding: 8px;                   /* Förberedelse för hover */
 }
 nav a:hover {
-    background-color: #00AA89;    /* Byter bakgrund on hover "pseudoklass" */ 
+    background-color: #72855e;    /* Byter bakgrund on hover "pseudoklass" */ 
 }

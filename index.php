@@ -76,9 +76,9 @@ print("<p>Vilket betyder att det nu är " . $manad[$monthnum] . "</p>");
             <h2>Uppgift 3 </h2>
             <p>Räkna hur lång tid det är till ett datum.
             <form action="index.php" method="get">
-                Dag: <input type="text" name="dag"><br>
-                Månad: <input type="text" name="manad"><br>
-                år: <input type="text" name="ar"><br>
+                Dag: <input type="text" name="dag"><br><br>
+                Månad: <input type="text" name="manad"><br><br>
+                år: <input type="text" name="ar"><br><br>
 
                 <input type="submit">
             </form>
@@ -136,9 +136,9 @@ if (isset($_REQUEST["dag"]) && isset($_REQUEST["manad"]) && isset($_REQUEST["ar"
         <article>
             <h2>Uppgift 4</h2>
             <form action="index.php" method="get">
-                Användarnamn: <input type="text" name="username"><br>
+                Användarnamn: <input type="text" name="username"><br><br>
                 E-mail: <input type="text" name="email"><br>
-                <input type="submit">
+                <br><input type="submit">
             </form>
 
             <?php
@@ -212,9 +212,9 @@ if (isset($_COOKIE["user"])) {
         <h2>Uppgift 6 - Spara användardata på servern</h2>
         <!---2. ändra method till post-->
         <form action="index.php" method="post">
-                Login: <input type="text" name="login"><br>
+                Login: <input type="text" name="login"><br><br>
                 Password: <input type="text" name="password"><br>
-                <input type="submit">
+                <br><input type="submit">
             </form>
 <?php
 
@@ -315,8 +315,14 @@ print("<a href='comment.log'>kommentarerna</a>")
 </article>
 
 <article><br>
-<a href="rapport.php/"><h2>Jennas Projekt 1 rapport</h2></a>
+<a href="rapport.php/"><h3>Jennas Projekt 1 rapport</h3></a>
 </article>
+
+<article>
+<a href="rapport1.php/"><h3>Sophias Projekt 1 rapport</h3></a>
+</article>
+
+
     </div>
 </body>
 
