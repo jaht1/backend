@@ -75,7 +75,7 @@ print("<p>Vilket betyder att det nu är " . $manad[$monthnum] . "</p>");
 
             <h2>Uppgift 3 </h2>
             <p>Räkna hur lång tid det är till ett datum.
-            <form action="index.php" method="get" text-align="center">
+            <form action="index.php" method="get">
                 Dag: <input type="text" name="dag"><br>
                 Månad: <input type="text" name="manad"><br>
                 år: <input type="text" name="ar"><br>
@@ -186,8 +186,6 @@ $firstvisit = time();
 $forstaBesok = "besok1";
 setcookie($cookie_name, $cookie_value, time() + (86400 * 2), "/");
 
-
-
 //$firstVisit = "";
 //kolla ifall användaren har en cookie
 if (isset($_COOKIE["user"])) {
@@ -199,7 +197,7 @@ if (isset($_COOKIE["user"])) {
 
 } else {
     print("Hej nya besökare!");
-    
+
     //setcookie("cookie_first", $firstvisit, time() * (86400 * 30), "/");
     setcookie($forstaBesok, date("d.m.Y H:i:s"), time() * (86400 * 30), "/");
     //setcookie($cookie_first, date("d.m.Y H:i:s"), time()*(86400*30), "/"); //original
@@ -248,13 +246,30 @@ if ($login == "jenna") {
   <input type="submit" value="Upload Image" name="submit">
 </form>
 -->
+Ladda upp en bild!<br>
 <form action="upload.php" method="POST" enctype="multipart/form-data">
 <input type="file" name="file" />
 <button type="submit" name="submit">Upload image</button>
+</form>
 <?php
 
 ?>
+<p>Uppladdade bilderna:</p>
 
+<?php
+$files = scandir('uploads/');
+$i = 1;
+$ignore = array('cgi-bin', '.', '..', '._');
+foreach ($files as $file) {
+    //print("<img src='uploads/" . $file . "'/><br>");
+
+    if (!in_array($file, $ignore)) {
+        print("<a href='uploads/" . $file . "'>bild " . $i . " </a><br>");
+        $i++;
+    }
+    
+}
+?>
         </article>
 
 
@@ -267,7 +282,7 @@ $views = $_SESSION['views'] = $_SESSION['views'] + 1;
 $myfile = fopen("besok.log", "a+") or die("Unable to open file!");
 fwrite($myfile, $_SERVER['REMOTE_USER'] . " besökte den " . date("d.m.Y") . " kl. " . date("H:i:s"));
 fwrite($myfile, "\nbesökarens ip-adress: " . $_SERVER['REMOTE_ADDR'] . "\n");
-fwrite($myfile, "Totala antal besökare: " . $views . "\n\n");
+fwrite($myfile, "Antal besök: " . $views . "\n\n");
 fclose($myfile);
 
 print("<a href='besok.log'>besök log</a>");
@@ -278,10 +293,10 @@ print("<a href='besok.log'>besök log</a>");
 
 <article>
 <h2>Uppgift 9 - Gästbok</h2>
-lämna en kommentar!
+lämna en kommentar!<br>
 <form method="get" action="index.php">
                 <textarea name="comment"></textarea><br>
-                <input type="submit">
+                <input type="submit"><br>
             </form>
 <?php
 //$myfile = fopen("comment.log", "r+") or die("Unable to open file!");

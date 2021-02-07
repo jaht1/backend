@@ -8,6 +8,7 @@
     <?php
 print("<p>Här är innehållet av din session: </p>");
 print_r($_SESSION);
+print("<br>Användaren: " . $_SESSION['user']);
 //print("<br>Hej " . $_SESSION['user'] . "!");
 
 /*if (isset($_COOKIE["username"])) {

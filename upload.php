@@ -76,11 +76,17 @@ if (isset($_POST['submit'])) {
 
     if (in_array($filActualExt, $tillatna)) {
         if ($filError === 0) {
-            if ($filStorlek < 500000) {
+            if ($filStorlek < 1000000) {
                 $filNamnNew = uniqid('', true).".".$filActualExt;
                 $filDestination = 'uploads/'.$filNamnNew;
+                //$fileDestination = 'uploads/';
                 move_uploaded_file($filTmpName, $filDestination);
                 header("Location: index.php?uploadsuccess");
+
+                $filnamn = basename($_FILES["fileToUpload"]["name"]);
+                //move_uploaded_file($filnamn, $fileDestination);
+                print("Filen du laddade heter " . $filNamn . "\n");
+                
 
             } else {
                 echo "Din fil är för stor!";
@@ -93,6 +99,8 @@ if (isset($_POST['submit'])) {
     } else {
         echo "Du kan inte ladda upp denna typ av fil!";
     }
+
+
 }
 ?>
 
